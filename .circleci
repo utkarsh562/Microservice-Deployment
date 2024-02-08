@@ -1,0 +1,29 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: projo:latest
+
+    steps:
+      - checkout
+
+      # Install Docker
+      - run:
+          name: Install Docker
+          command: |
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sh get-docker.sh
+            docker --version
+
+      # Build Docker image
+      - run:
+          name: Build Docker Image
+          command: |
+            docker build -t projo:latest .
+
+      # Run Docker container
+      - run:
+          name: Run Docker Container
+          command: |
+            docker run -d   -p 3000:3000 projo:latest
+            docker ps -a
