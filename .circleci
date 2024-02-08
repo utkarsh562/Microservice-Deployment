@@ -7,13 +7,10 @@ jobs:
     steps:
       - checkout
 
-      # Install Docker
+      # Install Node.js dependencies
       - run:
-          name: Install Docker
-          command: |
-            curl -fsSL https://get.docker.com -o get-docker.sh
-            sh get-docker.sh
-            docker --version
+          name: Install Dependencies
+          command: npm install
 
       # Build Docker image
       - run:
@@ -25,5 +22,5 @@ jobs:
       - run:
           name: Run Docker Container
           command: |
-            docker run -d   -p 3000:3000 projo:latest
+            docker run -d --name gymm -p 8080:80 projo:latest
             docker ps -a
