@@ -32,4 +32,4 @@ jobs:
       run: docker stop Proj || true && docker rm Proj || true
 
     - name: Run Docker container
-      run: docker run -d --name Proj -p 8080:8080 utkarshpathak/project:latest
+      run: docker run -d --name Proj -p 3000:3000 utkarshpathak/project:latest
